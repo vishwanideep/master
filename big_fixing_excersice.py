@@ -1,9 +1,13 @@
-# menu = ["pasta", "pizza", "salad"]
+# 1st excerise
+
+menu = ["pasta", "pizza", "salad"]
  
-# user_choice = int(input("Enter the index of the item: "))
+user_choice = int(input("Enter the index of the item: "))
  
-# message = f"You chose {menu[user_choice]}."
-# print(message)
+message = f"You chose {menu[user_choice]}."
+print(message)
+
+# 2nd Excerise
 
 menu = ["pasta", "pizza", "salad"]
  
