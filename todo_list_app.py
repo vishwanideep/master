@@ -1,14 +1,17 @@
-todos = []
-
-
 while True:
     user_input = input("Type add or show or edit or or complete or exit: ")
     user_input = user_input.strip()
 
     match user_input:
         case 'add':
-            todo = input("Enter a To Do: ")
-            todos.append(todo)
+            todo = input("Enter a To Do: ") + "\n"
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+            todos.append(todo)            
+            file = open('todos.txt' , 'w')
+            file.writelines(todos)
+            file.close()
         case 'show':
             for i, item in enumerate(todos):
                 print(i+1, '-',item)
