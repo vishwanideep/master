@@ -28,19 +28,28 @@
 # for index, item in enumerate(waiting_list):
 #     print(f"{index+1}-{item.capitalize()}")
 
-#Coding Execrcise-2
+# #Coding Execrcise-2
 
-filenames = ['document', 'report', 'presentation']
+# filenames = ['document', 'report', 'presentation']
 
-for index, item in enumerate(filenames):
-    print(f"{index}-{item.capitalize()+'.txt'}")
+# for index, item in enumerate(filenames):
+#     print(f"{index}-{item.capitalize()+'.txt'}")
 
-#Coding Exercise-3
+# #Coding Exercise-3
 
-ips = ['100.122.133.105', '100.122.133.111']
+# ips = ['100.122.133.105', '100.122.133.111']
 
-ip_print = int(input("Enter the index of the IP you want: "))
-print("You chose: ", ips.__getitem__(ip_print))
+# ip_print = int(input("Enter the index of the IP you want: "))
+# print("You chose: ", ips.__getitem__(ip_print))
+
+# #Change strings in list
+
+filenames = ["1.doc", "1.report", "1.presentation"]
+
+filenames = [filename.replace(".","-")+".txt" for filename in filenames]
+
+print(filenames)
+
 
 
 
