@@ -44,12 +44,37 @@
 
 # #Change strings in list
 
-filenames = ["1.doc", "1.report", "1.presentation"]
+# # Using List Comprehensions
+#
+# filenames = ["1.doc", "1.report", "1.presentation"]
+#
+# filenames = [filename.replace(".","-")+".txt" for filename in filenames]
+#
+# print(filenames)
 
-filenames = [filename.replace(".","-")+".txt" for filename in filenames]
+# Coding Exercise
 
-print(filenames)
+# #Bug Fixing Exercise
+# def get_max():
+#     grades = [9.6, 9.2, 9.7]
+#     max_value = max(grades)
+#     min_value = min(grades)
+#     message = f"Max value: {max_value} and Min Value: {min_value}"
+#     return message
+#
+# print(get_max())
+#
 
+# Bug Fixing Excercise
+
+def calculate_time(h, g=9.80665):
+    t = (2 * h / g) ** 0.5
+    return t
+
+
+time = calculate_time(
+    100)
+print(time)
 
 
 

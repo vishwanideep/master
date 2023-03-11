@@ -1,70 +1,82 @@
+# from functions import openfile_to_do, writefile
+
+import functions
+
 while True:
     user_input = input("Type add or show or edit or or complete or exit: ")
     user_input = user_input.strip()
 
-    match user_input:
-        case 'add':
-            todo = input("Enter a To Do: ") + "\n"
+    if user_input.startswith("add"):
+        try:
+            todo = user_input[4:]
 
             # file = open('todos.txt', 'r')
             # todos = file.readlines()
             # file.close()
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+            todos = functions.openfile_to_do()
 
-            todos.append(todo)
+            todos.append(todo+"\n")
 
             # file = open('todos.txt', 'w')
             # file.writelines(todos)
             # file.close()
+            functions.writefile('todos.txt', todos)
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+        except ValueError:
+            print("You have an incorrect value")
+            continue
+    elif user_input.startswith("show"):
+        # file = open('todos.txt', 'r')
+        # todos = file.readlines()
+        # file.close()
 
-        case 'show':
-            # file = open('todos.txt', 'r')
-            # todos = file.readlines()
-            # file.close()
+        todos = functions.openfile_to_do()
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+        # new_todos = []
 
-            # new_todos = []
+        # for item in todos:
+        #     new_item = item.strip("\n")
+        #     new_todos.append(new_item)
 
-            # for item in todos:
-            #     new_item = item.strip("\n")
-            #     new_todos.append(new_item)
+        new_todos = [item.strip("\n") for item in todos]
 
-            new_todos = [item.strip("\n") for item in todos]
+        for i, item in enumerate(new_todos):
+            print(i+1, '-', item)
 
-            for i, item in enumerate(new_todos):
-                print(i+1, '-', item)
-        case 'edit':
-            edit_item = int(input("Enter the value you want to edit: "))
+    elif user_input.startswith("edit"):
+        try:
+
+            edit_item = int(user_input[5:])
             edit_item = edit_item - 1
 
-            with open('todos.txt', 'r') as file:
-                todos = file.readlines()
+            todos = functions.openfile_to_do()
 
             new_todo = input("Enter a new To Do: ")
             todos[edit_item] = new_todo + "\n"
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+            functions.writefile('todos.txt', todos)
 
             print(new_todo)
-        case 'complete':
-            completed_item = int(input("Enter the value of the completed item: "))
+        except (ValueError, IndexError):
+            print("Invalid Edit input")
+            continue
+    elif user_input.startswith("complete"):
+        try:
+            completed_item = user_input[9:]
 
-            todos.pop(completed_item - 1)
+            todos = functions.openfile_to_do()
 
-            with open('todos.txt', 'w') as file:
-                file.writelines(todos)
+            item_removal = todos.pop(int(completed_item) - 1)
+            print("You have completed: "+item_removal)
 
-        case 'exit':
-            break
-        case unusual_character:
-            print("Goli Betaaaa!!! Masti Naaaaaiiiii")
+            functions.writefile('todos.txt', todos)
+        except IndexError:
+            print("Value not available in the To Do List")
+            continue
+    elif user_input.startswith("exit"):
+        break
+    else:
+        print("Not a valid command! Please choose add/edit/show/complete/exit")
 
 print("Bye!")
